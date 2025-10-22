@@ -1,0 +1,19 @@
+# Build
+bin/
+obj/
+*.user
+*.suo
+*.db
+
+# MonoGame content build artifacts
+Content/bin/
+Content/obj/
+
+# VS cache
+.vs/
+*.cache
+*.log
+
+# OS junk
+Thumbs.db
+.DS_Store
