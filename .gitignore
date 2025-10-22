@@ -14,6 +14,9 @@ Content/obj/
 *.cache
 *.log
 
+# VS Code settings
+.vscode/
+
 # OS junk
 Thumbs.db
 .DS_Store
