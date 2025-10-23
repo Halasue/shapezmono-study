@@ -15,8 +15,11 @@ namespace ShapezMono.Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
         private Logger _logger;
         private ErrorHandler _errorHandler;
+
+        private Storage _storage;
 
         public Application()
         {
@@ -35,6 +38,7 @@ namespace ShapezMono.Game
         /// </summary>
         protected override void Initialize()
         {
+            boot();
             base.Initialize();
         }
 
@@ -59,6 +63,12 @@ namespace ShapezMono.Game
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+        }
+
+        private void boot()
+        {
+            _storage = new Storage(this, Storage.STORAGE_SAVES);
+            _storage.Initialize();
         }
     }
 }
