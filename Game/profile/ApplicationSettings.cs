@@ -7,8 +7,8 @@ using ShapezMono.Game.Core;
 
 namespace ShapezMono.Game.profile
 {
-    public class ApplicationSettings : ReadWriteProxy
-    {
+    //public class ApplicationSettings : ReadWriteProxy
+    //{
 
-    }
+    //}
 }

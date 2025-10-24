@@ -9,14 +9,15 @@ namespace ShapezMono.Game.Core
     /// </summary>
     public class ExplainedResult
     {
+        public string? Reason { get; set; }
+
         private bool _result;
-        private string? _reason;
         private Dictionary<string, object>? _additionalProps;
 
-        public ExplainedResult(bool result, string? reason = null, Dictionary<string, object>? additionalProps = null)
+        public ExplainedResult(bool result = true, string? reason = null, Dictionary<string, object>? additionalProps = null)
         {
             _result = result;
-            _reason = reason;
+            Reason = reason;
             _additionalProps = additionalProps;
         }
 

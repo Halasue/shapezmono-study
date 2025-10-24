@@ -23,5 +23,9 @@ namespace ShapezMono.Game.Core
             Directory.CreateDirectory(_rootDir);
             _initialized = true;
         }
+
+        //public async Task WriteFileAsync(string fileName, object contents)
+        //{
+        //}
     }
 }
