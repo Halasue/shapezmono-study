@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ShapezMono.Game.Core
@@ -10,13 +9,13 @@ namespace ShapezMono.Game.Core
     public class ExplainedResult
     {
         public string? Reason { get; set; }
+        public bool Result { get; set; }
 
-        private bool _result;
         private Dictionary<string, object>? _additionalProps;
 
         public ExplainedResult(bool result = true, string? reason = null, Dictionary<string, object>? additionalProps = null)
         {
-            _result = result;
+            Result = result;
             Reason = reason;
             _additionalProps = additionalProps;
         }
@@ -27,7 +26,7 @@ namespace ShapezMono.Game.Core
         /// <returns></returns>
         public bool IsGood()
         {
-            return _result;
+            return Result;
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace ShapezMono.Game.Core
         /// <returns></returns>
         public bool IsBad()
         {
-            return !_result;
+            return !Result;
         }
 
         /// <summary>

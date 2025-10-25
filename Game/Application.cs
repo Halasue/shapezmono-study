@@ -1,74 +1,32 @@
-﻿using System.Diagnostics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 using System;
 using ShapezMono.Game.Core;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace ShapezMono.Game
 {
     /// <summary>
     /// メインゲームクラス
     /// </summary>
-    public class Application : Microsoft.Xna.Framework.Game
+    public class Application
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public ErrorHandler? ErrorHandler { get; private set; }
 
-        private Logger _logger;
-        private ErrorHandler _errorHandler;
+        private Storage? _storage;
 
-        private Storage _storage;
+        private Logger _logger = LoggerFactory.Create("Application");
 
-        public Application()
+        public async Task BootAsync()
         {
-            _errorHandler = new ErrorHandler();
-            _graphics = new GraphicsDeviceManager(this);
-            _logger = LoggerFactory.Create(this, ConsoleColor.Cyan);
+            Console.WriteLine("ShapezMono 起動中...");
 
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            ErrorHandler = new ErrorHandler();
 
-            _logger.Log($"Applicationを作成しました。プラットフォーム: {Utils.GetPlatformName()}");
-        }
+            _logger.Log("Applicationを作成中...");
 
-        /// <summary>
-        /// 初期化処理
-        /// </summary>
-        protected override void Initialize()
-        {
-            boot();
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// コンテンツ読み込み
-        /// </summary>
-        protected override void LoadContent()
-        {
-        }
-
-        /// <summary>
-        /// 毎フレームの更新処理
-        /// </summary>
-        protected override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// 毎フレームの描画処理
-        /// </summary>
-        protected override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-        }
-
-        private void boot()
-        {
             _storage = new Storage(this, Storage.STORAGE_SAVES);
-            _storage.Initialize();
+            await _storage.InitializeAsync();
+
         }
     }
 }

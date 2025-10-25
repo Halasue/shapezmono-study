@@ -25,12 +25,13 @@ namespace ShapezMono.Game.Core
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private void OnUnhandledException(object? sender, UnhandledExceptionEventArgs e)
         {
             if (!_isActive) return;
             _isActive = false;
             var ex = e.ExceptionObject as Exception;
-            ShowError(ex);
+            if (ex != null)
+                ShowError(ex);
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace ShapezMono.Game.Core
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
         {
             e.SetObserved();
             OnUnhandledException(sender, new UnhandledExceptionEventArgs(e.Exception, false));

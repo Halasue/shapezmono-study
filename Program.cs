@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using ShapezMono.Game;
 
-[DllImport("kernel32.dll")]
-static extern bool AllocConsole();
+public static class Program
+{
+    [DllImport("kernel32.dll")]
+    static extern bool AllocConsole();
 
-AllocConsole(); // コンソールを開く
-Console.WriteLine("ゲーム起動中...");
+    [STAThread]
+    public static void Main()
+    {
+        AllocConsole();
 
-using var game = new ShapezMono.Game.Application();
+        var app = new Application();
+        _ = app.BootAsync();
 
-game.Run();
+        // 疑似的なメインループ
+        while (true)
+        {
+            Thread.Sleep(16);
+        }
+    }
+}
