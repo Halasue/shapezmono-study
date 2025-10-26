@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace ShapezMono.Game.Core
 {
+    /// <summary>
+    /// デバウンスユーティリティ
+    /// </summary>
     public class Debounce
     {
         private CancellationTokenSource? _cts;

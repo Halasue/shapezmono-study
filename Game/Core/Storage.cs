@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ShapezMono.Game.Core
@@ -36,17 +37,47 @@ namespace ShapezMono.Game.Core
         }
 
         /// <summary>
+        /// ファイルを非同期で読み込む
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<TData?> ReadFileAsync<TData>(string fileName)
+        {
+            var bytes = await File.ReadAllBytesAsync(fileName);
+            var decompressed = await Compression.DecompressAsync<TData>(bytes);
+            return decompressed;
+        }
+
+        /// <summary>
         /// ファイルを非同期で書き込む
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="contents"></param>
         /// <returns></returns>
-        public async Task WriteFileAsync(string fileName, Data contents)
+        public async Task WriteFileAsync<TData>(string fileName, TData contents)
         {
             var parentDir = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(parentDir ?? ".");
-            var compressed = await Compression.CompressAsync(contents);
+            if (contents == null) throw new ArgumentNullException(nameof(contents));
+            var compressed = 
+                await Compression.CompressAsync(contents);
             await File.WriteAllBytesAsync(fileName, compressed);
+        }
+
+        /// <summary>
+        /// ファイルを非同期で削除する
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task DeleteFileAsync(string fileName)
+        {
+            await Task.Run(() =>
+            {
+                // unlinkのように、ファイルが存在しない場合は例外を投げる
+                if (!File.Exists(fileName))
+                    throw new FileNotFoundException($"ファイルが見つかりません: {fileName}");
+                File.Delete(fileName);
+            });
         }
     }
 }

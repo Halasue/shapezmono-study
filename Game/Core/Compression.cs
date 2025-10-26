@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace ShapezMono.Game.Core
 {
+    /// <summary>
+    /// データ圧縮ユーティリティ
+    /// </summary>
     public static class Compression
     {
+        /// <summary>
+        /// データを圧縮する
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static async Task<byte[]> CompressAsync(object data)
         {
             var json = JsonSerializer.Serialize(data);
@@ -22,6 +30,12 @@ namespace ShapezMono.Game.Core
             return output.ToArray();
         }
 
+        /// <summary>
+        /// データを展開する
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static async Task<T?> DecompressAsync<T>(byte[] data)
         {
             using var input = new MemoryStream(data);

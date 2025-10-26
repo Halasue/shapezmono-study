@@ -1,9 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ShapezMono.Game.Core;
 
 namespace ShapezMono.Game.profile
 {
-    public class ApplicationSettings : ReadWriteProxy
+    public class ApplicationSettingsData : Data
+    {
+        public SettingsStorage Settings { get; set; } = new();
+    }
+
+    public class ApplicationSettings : ReadWriteProxy<ApplicationSettingsData>
     {
         private readonly Application _app;
 
@@ -15,9 +21,20 @@ namespace ShapezMono.Game.profile
             SettingHandles = InitializeSettings();
         }
 
-        public void Initialize()
+        public async Task Initialize()
         {
+            await ReadAsync();
+            var settings = GetAllSettings();
+            foreach (var handle in SettingHandles)
+            {
+                handle.Apply(_app, settings[handle.Id]);
+            }
+            await WriteAsync();
+        }
 
+        public SettingsStorage GetAllSettings()
+        {
+            return CurrentData.Settings;
         }
 
         private static List<BaseSetting> InitializeSettings()
