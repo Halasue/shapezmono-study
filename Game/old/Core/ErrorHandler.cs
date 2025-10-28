@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     /// <summary>
     /// 未処理例外ハンドラ

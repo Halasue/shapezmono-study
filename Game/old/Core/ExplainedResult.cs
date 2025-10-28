@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     /// <summary>
     /// 説明付きの結果を表すクラス

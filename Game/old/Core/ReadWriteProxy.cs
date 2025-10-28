@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     /// <summary>
     /// バージョン付きデータ構造

@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     /// <summary>
     /// データ圧縮ユーティリティ

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using ShapezMono.Game.Core;
 using System.Threading.Tasks;
+using ShapezMono.Game.old.Core;
 
-namespace ShapezMono.Game
+namespace ShapezMono.Game.old
 {
     /// <summary>
     /// メインゲームクラス

@@ -1,4 +1,4 @@
-﻿namespace ShapezMono.Game.Core
+﻿namespace ShapezMono.Game.old.Core
 {
     public static class BuildOptions
     {

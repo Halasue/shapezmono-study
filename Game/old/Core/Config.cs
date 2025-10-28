@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     public static class Config
     {

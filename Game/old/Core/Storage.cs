@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using ShapezMono.Game.old;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game.old.Core
 {
     public class Storage
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShapezMono.Game.Core
+namespace ShapezMono.Game
 {
     /// <summary>
     /// ロガークラス
